@@ -152,6 +152,7 @@ margin-top: 47px;
 #bitcrusher{
     flex-direction: column;
     display: flex;
+    top: 29px;
 }
 
 #bitcrusher button, #bitcrusher select{
@@ -347,14 +348,9 @@ margin-top: 47px;
 }
 
 #drums-bitcrusher{
+    margin-bottom: 0;
     top: 10px;
     position: relative;
-    margin-bottom: 30px;
-
-}
-
-#drums-bitcrusher select {
-    top : 0;
 }
 
 #chords-bitcrusher, #chords-filter{
@@ -573,10 +569,6 @@ margin-top: 47px;
 
 }
 
-#responsive-fix{
-    top: 29px
-}
-
 #playing-button2{
     width : 90px;
 position: relative;
@@ -749,6 +741,12 @@ input:checked + .slider:before {
   }
   .react-music-canvas{
       width: 88%;
+  }
+  #responsive-fix{
+      top: 29px
+  }
+  #drums-bitcrusher{
+        margin-bottom: 30px;
   }
   .title-image-container{
       margin-left: 15px;
