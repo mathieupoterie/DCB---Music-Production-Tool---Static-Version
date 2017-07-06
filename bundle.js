@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "8e5153f2e2a0c4cb0b44"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "c633f06f7224824eb432"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -41460,12 +41460,12 @@
 	            knobFilterFrequency: 0,
 	            filterType: 'highpass',
 	            delayDry: 1,
-	            delayWet: 0.25,
+	            delayWet: 0,
 	            delayTime: 150,
 	            delayFeedback: 0.25,
 	            delayCutoff: 9000,
 	            knobDelayDry: 100,
-	            knobDelayWet: 25,
+	            knobDelayWet: 0,
 	            valueDelayTime: "1/16",
 	            knobDelayFeedback: 25,
 	            knobDelayCutoff: 75,
@@ -41662,7 +41662,6 @@
 	    }, {
 	        key: 'selectFilterType',
 	        value: function selectFilterType(e) {
-	            console.log(e.target);
 	            this.setState({ filterType: e.target.value });
 	        }
 	    }, {
@@ -42482,9 +42481,7 @@
 	        key: 'componentWillReceiveProps',
 	        value: function componentWillReceiveProps(nextProps) {
 	            if (nextProps.rootnote != this.props.rootnote || nextProps.scale != this.props.scale) {
-	                console.log(this.state.storedSteps, "this.state.storedSteps");
 	                this.props = nextProps;
-	                console.log(this.props);
 	                var storedStepsClone = this.state.storedSteps.slice();
 	                this.translateStepsIntoNotes(storedStepsClone);
 	            }
@@ -42601,8 +42598,6 @@
 	                        return arr;
 	                    };
 
-	                    console.log("here we are!!!");
-
 	                    var actualStep = removeA(clone, clone[numberedCol]);
 	                    this.setState({ storedSteps: actualStep });
 	                    return this.translateStepsIntoNotes(actualStep, octave);
@@ -42621,12 +42616,9 @@
 	                    if (!updated) {
 	                        var newStepsToStore = previousSteps.slice();
 	                        newStepsToStore.push(storedNewStep);
-	                        console.log("newStepsToStore", newStepsToStore);
 	                        var newStepsToTranslate = newStepsToStore.slice();
 	                        this.setState({ storedSteps: newStepsToStore });
-	                        console.log("1", JSON.stringify(newStepsToStore));
 	                        this.translateStepsIntoNotes(newStepsToTranslate, octave);
-	                        console.log("2", JSON.stringify(newStepsToStore));
 	                    }
 	                }
 	            } else {
@@ -42662,10 +42654,10 @@
 	                        step[2] = [that.props.notes.fifth + step[3], that.props.notes.second + (step[3] + 1), that.props.notes.sensible + (step[3] + 1)];
 	                        newSteps[i] = step;
 	                    } else if (degree == "VI") {
-	                        step[2] = [that.props.notes.sixth + step[3], that.props.notes.third + (step[3] + 1), that.props.notes.root + (step[3] + 2)];
+	                        step[2] = [that.props.notes.sixth + step[3], that.props.notes.third + (step[3] + 1), that.props.notes.root + (step[3] + 1)];
 	                        newSteps[i] = step;
 	                    } else if (degree == "VII") {
-	                        step[2] = [that.props.notes.seventh + step[3], that.props.notes.fourth + (step[3] + 1), that.props.notes.second + (step[3] + 2)];
+	                        step[2] = [that.props.notes.seventh + step[3], that.props.notes.fourth + (step[3] + 1), that.props.notes.second + (step[3] + 1)];
 	                        newSteps[i] = step;
 	                    }
 	                    step.pop();
@@ -42707,15 +42699,10 @@
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            console.log("STATE", this.state);
 	            var that = this;
 	            var warning = "";
 	            if (this.state.warning) {
-	                warning = _react2.default.createElement(
-	                    'p',
-	                    null,
-	                    'The total can\'t exceed 32 columns ! Pick another bars and resolution number!'
-	                );
+	                warning = "<p>The total can't exceed 32 columns ! Pick another bars and resolution number!</p>";
 	            }
 	            var MelLength = [],
 	                chordsColumns = [],
@@ -42868,7 +42855,7 @@
 	                    'div',
 	                    null,
 	                    _react2.default.createElement(
-	                        'p',
+	                        'h4',
 	                        { className: 'container-title chords-titles', onClick: this.showOrHideSettings.bind(this) },
 	                        'Settings  ',
 	                        pointerSettings
@@ -42972,10 +42959,10 @@
 	                ),
 	                _react2.default.createElement(
 	                    'div',
-	                    { className: 'chorus-container', id: 'chords-sequencer-container' },
+	                    { className: 'chorus-container sequencer-container' },
 	                    _react2.default.createElement(
-	                        'p',
-	                        { className: 'chords-titles', id: 'chords-filter' },
+	                        'h4',
+	                        { className: 'chords-titles' },
 	                        'Sequencer'
 	                    ),
 	                    _react2.default.createElement(
@@ -43473,7 +43460,7 @@
 	            filterType: 'highpass',
 	            filterQ: 0,
 	            knobFilterQ: 0,
-	            saw1: "square",
+	            saw1: "sine",
 	            saw2: "sine",
 	            chorusRate: 1.5,
 	            knobChorusRate: 15,
@@ -43499,7 +43486,6 @@
 	    }, {
 	        key: 'selectFilterType',
 	        value: function selectFilterType(e) {
-	            console.log(e.target);
 	            if (e.target.value == "lowpass") {
 	                this.setState({ filterType: e.target.value, knobFilterFrequency: 100 - this.state.knobFilterFrequency, filterFrequency: 7500 - this.state.filterFrequency });
 	            } else {
@@ -43706,7 +43692,7 @@
 	                    'div',
 	                    _defineProperty({ id: 'polysynth-fx-container' }, 'id', 'chords-container'),
 	                    _react2.default.createElement(
-	                        'p',
+	                        'h4',
 	                        { className: 'container-title chords-titles', onClick: this.showOrHideSaw.bind(this) },
 	                        'Saw  ',
 	                        pointerSaw
@@ -43812,8 +43798,8 @@
 	                        'div',
 	                        { className: 'bit-container' },
 	                        _react2.default.createElement(
-	                            'p',
-	                            { className: 'container-title chords-titles', id: 'chords-bitcrusher', onClick: this.showOrHideBitcrusher.bind(this) },
+	                            'h4',
+	                            { className: 'container-title chords-titles', onClick: this.showOrHideBitcrusher.bind(this) },
 	                            'Bitcrusher ',
 	                            pointerBitcrusher
 	                        ),
@@ -43827,7 +43813,7 @@
 	                            ),
 	                            _react2.default.createElement(
 	                                'select',
-	                                { id: 'chords-bitcrusher select-items', onChange: this.selectBit.bind(this), value: this.state.bit },
+	                                { id: 'select-items', onChange: this.selectBit.bind(this), value: this.state.bit },
 	                                _react2.default.createElement(
 	                                    'option',
 	                                    { value: '4' },
@@ -43856,13 +43842,13 @@
 	                        { className: 'filter-chords-container' },
 	                        _react2.default.createElement(
 	                            'h4',
-	                            { className: 'container-title chords-titles', id: 'chords-filter', onClick: this.showOrHideFilter.bind(this) },
+	                            { className: 'container-title chords-titles', onClick: this.showOrHideFilter.bind(this) },
 	                            'Filter ',
 	                            pointerFilter
 	                        ),
 	                        _react2.default.createElement(
 	                            'div',
-	                            { className: 'fx-container chords-color', id: 'responsive-fix', style: showFilterContainer },
+	                            { className: 'fx-container chords-color', style: showFilterContainer },
 	                            _react2.default.createElement(
 	                                'div',
 	                                null,
@@ -43926,9 +43912,9 @@
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',
-	                        { className: 'chorus-container', id: 'chorus-wrapper' },
+	                        { className: 'chorus-container' },
 	                        _react2.default.createElement(
-	                            'p',
+	                            'h4',
 	                            { className: 'container-title chords-titles', id: 'chords-filter', onClick: this.showOrHideChorus.bind(this) },
 	                            'Chorus ',
 	                            this.state.disableFx,
@@ -44225,8 +44211,6 @@
 	        value: function render() {
 	            var _this2 = this;
 
-	            console.log("state", this.state);
-
 	            var that = this;
 	            var columnNumber = this.state.resolution * this.state.bars;
 	            var drumsSequencerStep = "";
@@ -44453,7 +44437,7 @@
 	                ),
 	                _react2.default.createElement(
 	                    'div',
-	                    { id: 'drums-sequencer-container' },
+	                    { className: 'sequencer-container' },
 	                    _react2.default.createElement(
 	                        'p',
 	                        { className: 'container-title', id: 'drums-sequencer' },
@@ -44907,13 +44891,12 @@
 	                    return this.setState({ storedSteps: previousSteps });
 	                } else {
 	                    var newStep = storedNewStep;
-	                    var that = this;
 	                    var updated = false;
 	                    previousSteps.forEach(function (step, i) {
 	                        if (step[0] === numberedCol) {
 	                            previousSteps[i] = newStep;
 	                            updated = true;
-	                            that.setState({ storedSteps: previousSteps });
+	                            _this2.setState({ storedSteps: previousSteps });
 	                            return _this2.translateStepsIntoNotes(previousSteps, octave);
 	                        }
 	                    });
@@ -44934,16 +44917,9 @@
 	        value: function translateStepsIntoNotes(stepsToTranslate, octave) {
 	            var _this3 = this;
 
-	            console.log("hey?");
-
 	            var newSteps = stepsToTranslate.slice();
-	            console.log("this.state.octave[i]", this.state.octave);
-
-	            var that = this;
 	            if (newSteps[0]) {
 	                newSteps = newSteps.map(function (step, i) {
-	                    console.log("i", i);
-	                    console.log("this.state.octave[i]", _this3.state.octave[i + 1]);
 	                    step = step.slice();
 	                    step[2] = _this3.props.notes[step[2]] + step[3];
 	                    step.pop();
@@ -44951,7 +44927,6 @@
 	                });
 	            }
 
-	            console.log(newSteps);
 	            this.setState({ steps: newSteps });
 	        }
 	    }, {
@@ -45009,17 +44984,13 @@
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            console.log(this.state.attack, "attack");
+	            var _this4 = this;
 
 	            var that = this;
 	            var warning = "";
 	            if (this.state.warning) {
 
-	                warning = _react2.default.createElement(
-	                    'p',
-	                    null,
-	                    'The total can\'t exceed 32 columns ! Pick another bars and resolution number!'
-	                );
+	                warning = "<p>The total can't exceed 32 columns ! Pick another bars and resolution number!</p>";
 	            }
 	            var bassIdLength = [],
 	                bassColumns = [],
@@ -45056,7 +45027,7 @@
 	                    null,
 	                    _react2.default.createElement(
 	                        'select',
-	                        { id: col.id, onChange: that.selectOctave, value: that.state.octave[col.id] },
+	                        { id: col.id, onChange: _this4.selectOctave, value: _this4.state.octave[col.id] },
 	                        _react2.default.createElement(
 	                            'option',
 	                            { value: '1' },
@@ -45087,7 +45058,7 @@
 	                    null,
 	                    _react2.default.createElement(
 	                        'select',
-	                        { id: col.id, onChange: that.selectLength, value: that.state.length[col.id] },
+	                        { id: col.id, onChange: _this4.selectLength, value: _this4.state.length[col.id] },
 	                        bassLengthChoices
 	                    )
 	                );
@@ -45107,7 +45078,7 @@
 	                    null,
 	                    _react2.default.createElement(
 	                        'select',
-	                        { id: col.id, onChange: that.handleSeqChange, value: that.state.stepSelected[col.id] },
+	                        { id: col.id, onChange: _this4.handleSeqChange, value: _this4.state.stepSelected[col.id] },
 	                        _react2.default.createElement(
 	                            'option',
 	                            { value: 'None' },
@@ -45116,42 +45087,42 @@
 	                        _react2.default.createElement(
 	                            'option',
 	                            { value: 'sensible' },
-	                            that.props.notes.sensible
+	                            _this4.props.notes.sensible
 	                        ),
 	                        _react2.default.createElement(
 	                            'option',
 	                            { value: 'seventh' },
-	                            that.props.notes.seventh
+	                            _this4.props.notes.seventh
 	                        ),
 	                        _react2.default.createElement(
 	                            'option',
 	                            { value: 'sixth' },
-	                            that.props.notes.sixth
+	                            _this4.props.notes.sixth
 	                        ),
 	                        _react2.default.createElement(
 	                            'option',
 	                            { value: 'fifth' },
-	                            that.props.notes.fifth
+	                            _this4.props.notes.fifth
 	                        ),
 	                        _react2.default.createElement(
 	                            'option',
 	                            { value: 'fourth' },
-	                            that.props.notes.fourth
+	                            _this4.props.notes.fourth
 	                        ),
 	                        _react2.default.createElement(
 	                            'option',
 	                            { value: 'third' },
-	                            that.props.notes.third
+	                            _this4.props.notes.third
 	                        ),
 	                        _react2.default.createElement(
 	                            'option',
 	                            { value: 'second' },
-	                            that.props.notes.second
+	                            _this4.props.notes.second
 	                        ),
 	                        _react2.default.createElement(
 	                            'option',
 	                            { value: 'root' },
-	                            that.props.notes.root
+	                            _this4.props.notes.root
 	                        )
 	                    )
 	                );
@@ -45382,7 +45353,7 @@
 	                ),
 	                _react2.default.createElement(
 	                    'div',
-	                    { 'class': 'fx-select fx-container drums-color', id: 'bass-sound-container' },
+	                    { className: 'fx-select fx-container drums-color', id: 'bass-sound-container' },
 	                    _react2.default.createElement(
 	                        'p',
 	                        { className: 'container-title bass-titles', onClick: this.showOrHideBitcrusher.bind(this) },
@@ -45429,7 +45400,7 @@
 	                ),
 	                _react2.default.createElement(
 	                    'div',
-	                    { className: 'bass-container', id: 'bass-sequencer-container' },
+	                    { className: 'bass-container sequencer-container' },
 	                    _react2.default.createElement(
 	                        'p',
 	                        { className: 'bass-titles', id: 'bass-filter' },
