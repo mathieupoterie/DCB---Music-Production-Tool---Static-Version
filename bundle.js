@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "c633f06f7224824eb432"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "c56b96327a73cfd66408"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -43805,7 +43805,7 @@
 	                        ),
 	                        _react2.default.createElement(
 	                            'div',
-	                            { className: 'fx-select fx-container chords-color', id: 'bitcrusher', style: showBitcrusherContainer },
+	                            { className: 'fx-container chords-color', id: 'bitcrusher', style: showBitcrusherContainer },
 	                            _react2.default.createElement(
 	                                'button',
 	                                { onClick: this.showOrHideBit.bind(this), className: 'btn button-primary bitcrusher-button', id: 'bitcrusher-button-chords' },
@@ -45353,7 +45353,7 @@
 	                ),
 	                _react2.default.createElement(
 	                    'div',
-	                    { className: 'fx-select fx-container drums-color', id: 'bass-sound-container' },
+	                    { className: 'bit-container' },
 	                    _react2.default.createElement(
 	                        'p',
 	                        { className: 'container-title bass-titles', onClick: this.showOrHideBitcrusher.bind(this) },
@@ -45362,38 +45362,34 @@
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',
-	                        { className: 'bit-container fx-container bass-color', id: 'bitcrusher bass-container', style: showBitcrusherContainer },
+	                        { className: 'fx-container bass-color', id: 'bitcrusher', style: showBitcrusherContainer },
 	                        _react2.default.createElement(
-	                            'div',
-	                            null,
+	                            'button',
+	                            { className: 'btn button-primary bitcrusher-button', id: 'bitcrusher-button-bass', onClick: this.showOrHideBit.bind(this) },
+	                            this.state.showOrHideBit
+	                        ),
+	                        _react2.default.createElement(
+	                            'select',
+	                            { onChange: this.selectBit.bind(this), value: this.state.bit },
 	                            _react2.default.createElement(
-	                                'button',
-	                                { className: 'btn button-primary bitcrusher-button', id: 'bitcrusher-button-bass', onClick: this.showOrHideBit.bind(this) },
-	                                this.state.showOrHideBit
+	                                'option',
+	                                { value: '4' },
+	                                '4'
 	                            ),
 	                            _react2.default.createElement(
-	                                'select',
-	                                { onChange: this.selectBit.bind(this), value: this.state.bit },
-	                                _react2.default.createElement(
-	                                    'option',
-	                                    { value: '4' },
-	                                    '4'
-	                                ),
-	                                _react2.default.createElement(
-	                                    'option',
-	                                    { value: '8' },
-	                                    '8'
-	                                ),
-	                                _react2.default.createElement(
-	                                    'option',
-	                                    { value: '16' },
-	                                    '16'
-	                                ),
-	                                _react2.default.createElement(
-	                                    'option',
-	                                    { value: '32' },
-	                                    '32'
-	                                )
+	                                'option',
+	                                { value: '8' },
+	                                '8'
+	                            ),
+	                            _react2.default.createElement(
+	                                'option',
+	                                { value: '16' },
+	                                '16'
+	                            ),
+	                            _react2.default.createElement(
+	                                'option',
+	                                { value: '32' },
+	                                '32'
 	                            )
 	                        )
 	                    )
